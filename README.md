@@ -17,7 +17,16 @@ fatal outcomes?
 - **Geographic scope**: Greater London (Metropolitan Police + City of London Police)
 - **Temporal scope**: 2022 and 2023 calendar years
 - **Auxiliary**: ONS Inner/Outer London Borough classification
+- 
+## Data Sources & Authoritative References
 
+- **STATS19 Open Data**: https://www.gov.uk/government/statistical-data-sets/road-safety-open-data
+- **DfT Data Guide (2024)**: All variable codes and labels are decoded using the official 
+  DfT data guide loaded directly from 
+  https://data.dft.gov.uk/road-accidents-safety-data/dft-road-casualty-statistics-road-safety-open-dataset-data-guide-2024.xlsx
+- **STATS20 Specification**: 
+  https://www.gov.uk/government/publications/road-accidents-and-safety-statistics-guidance
+  
 ## Repository Structure
 
 - `notebook/coursework.ipynb` — main analysis notebook (submission)
