@@ -215,4 +215,16 @@ marimo/_lsp/
 __marimo__/
 
 # Streamlit
+
+# Raw data (too large, kept locally only)
+data/raw/
+*.zip
+
+# Jupyter
+.ipynb_checkpoints/
+*.pyc
+
+# Mac/Windows system files
+.DS_Store
+Thumbs.db
 .streamlit/secrets.toml
