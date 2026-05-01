@@ -1,10 +1,8 @@
 # CASA0006-London-Road-Safety
-CASA0006 coursework: predicting road collision severity in London using STATS19 data
-
-# CASA0006 Coursework — London Road Safety Analysis
-
 This repository contains the coursework submission for **CASA0006 Data Science 
-for Spatial Systems** (UCL CASA, 2025-2026).
+for Spatial Systems** (UCL CASA, 2025-2026).  
+
+CASA0006 coursework: predicting road collision severity in London using STATS19 data  
 
 ## Research Question
 
@@ -39,4 +37,4 @@ fatal outcomes?
 
 ## Author
 
-[Your name], MSc Urban Spatial Science, UCL
+Jiaying Li, MRes Urban Spatial Science, CASA, UCL
