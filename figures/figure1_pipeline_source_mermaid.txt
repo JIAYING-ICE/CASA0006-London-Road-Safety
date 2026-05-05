@@ -1,0 +1,103 @@
+flowchart TD
+    %% ===== Layer 1: Raw Data Sources =====
+    A1[STATS19<br/>Collisions]
+    A2[STATS19<br/>Casualties]
+    A3[STATS19<br/>Vehicles]
+    A4[ONS Borough<br/>Boundaries]
+    A5[ONS Population<br/>Estimates 2022]
+
+    %% ===== Layer 2: Integration =====
+    B1[Three-Table Join + London Filter<br/>n = 46,416 collisions]
+
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A4 --> B1
+    A5 -.-> B1
+
+    %% ===== Group: Feature Engineering =====
+    subgraph FE [" "]
+        direction LR
+        C1[9 Derived<br/>Features]
+        C2[RAVE Framework<br/>13 features]
+        C3[Junction Encoding<br/>Investigation]
+        C1 --> C2 --> C3
+    end
+
+    B1 --> C1
+    
+    PFE[Feature Engineering]
+    C2 -.- PFE
+
+    %% ===== Group: Modeling =====
+    subgraph MOD [" "]
+        direction LR
+        D1[Stratified<br/>70-30 Split]
+        D2[Random Forest<br/>class_weight=balanced]
+        D3[Sensitivity:<br/>SMOTE comparison]
+        D1 --> D2
+        D1 --> D3
+    end
+
+    C3 --> D1
+
+    PMOD[Modeling Pipeline]
+    D2 -.- PMOD
+
+    %% ===== Group: Validation =====
+    subgraph VAL [" "]
+        direction LR
+        E1[5-Fold<br/>CV]
+        E2[Test Set<br/>Evaluation]
+        E3[Baseline<br/>Comparison]
+        E4[Inner-Outer<br/>Spatial Test]
+    end
+
+    D2 --> E1
+    D2 --> E2
+    D2 --> E3
+    D2 --> E4
+
+    PVAL[Multi-Layer Validation]
+    E2 -.- PVAL
+
+    %% ===== Group: SHAP Interpretation =====
+    subgraph SHAP [" "]
+        direction LR
+        F1[SHAP Global<br/>Importance]
+        F2[Threshold<br/>Analysis]
+        F3[Junction<br/>9-Type Analysis]
+        F1 --> F2
+        F1 --> F3
+    end
+
+    D2 --> F1
+
+    PSHAP[SHAP Interpretation]
+    F1 -.- PSHAP
+
+    %% ===== Layer 7: Output =====
+    G1[Severity Drivers<br/>RAVE-based ranking]
+    G2[Spatial<br/>Generalisability]
+    G3[Counter-Intuitive<br/>Findings]
+
+    E4 --> G2
+    F1 --> G1
+    F2 --> G3
+    F3 --> G3
+
+    PFIN[Findings]
+    G2 -.- PFIN
+
+    %% Styling
+    classDef default fill:#fff,stroke:#000,stroke-width:1.5px
+    classDef phase fill:#E5E7EB,stroke:#666,stroke-width:1.5px,rx:15,ry:15
+    
+    style B1 fill:#E8F4F8,stroke:#2C5F7C,stroke-width:2px
+    style D2 fill:#FFF4E6,stroke:#D97706,stroke-width:2px
+    style F1 fill:#FEF3C7,stroke:#92400E,stroke-width:2px
+    style G1 fill:#DCFCE7,stroke:#166534,stroke-width:2.5px
+    style G2 fill:#DCFCE7,stroke:#166534,stroke-width:2.5px
+    style G3 fill:#DCFCE7,stroke:#166534,stroke-width:2.5px
+
+    class PFE,PMOD,PVAL,PSHAP,PFIN phase
